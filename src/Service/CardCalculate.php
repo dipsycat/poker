@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Card;
 use App\CardPrint;
@@ -101,7 +99,7 @@ class CardCalculate
             /** @var Card $obj */
             foreach($objs[$i] as $obj) {
                 $arr[] = $obj->getValue() . $obj->getColor();
-                if($obj->getIsPlayerCard()) {
+                if($obj->isPlayerCard()) {
 
                     $userCards[] = $obj;
                 }
@@ -114,7 +112,6 @@ class CardCalculate
             foreach($userCards as $userCard) {
                 $userCardsText[] = $userCard->getValue() . $userCard->getColor();
             }
-
 
             return '[' . implode(' ', $arr) . '] [' . implode(' ', $userCardsText) . ']';
         } else {

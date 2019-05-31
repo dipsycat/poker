@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App;
 
 use App\Exception\NotCorrectCardException;
 
-
 class Card
 {
-
     const VALUES = [
         '2' => 2,
         '3' => 3,
@@ -32,10 +29,19 @@ class Card
         's' => 's'
     ];
 
+    /**
+     * @var string
+     */
     private $value;
 
+    /**
+     * @var string
+     */
     private $color;
 
+    /**
+     * @var bool
+     */
     private $isPlayerCard;
 
     /**
@@ -45,7 +51,7 @@ class Card
      *
      * @throws NotCorrectCardException
      */
-    public function __construct(string $text, $isPlayerCard)
+    public function __construct(string $text, bool $isPlayerCard)
     {
         $value = substr_replace($text, '', -1, 1);
         $color = mb_substr($text, -1, 1);
@@ -60,34 +66,43 @@ class Card
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getIsPlayerCard()
+    public function isPlayerCard(): bool
     {
         return $this->isPlayerCard;
     }
 
     /**
-     * @return bool|string
+     * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
 
-    public function getIntValue()
+    /**
+     * @return int
+     */
+    public function getIntValue(): int
     {
         return self::VALUES[$this->value];
     }
 
     /**
-     * @return bool|string
+     * @return string
      */
-    public function getColor()
+    public function getColor(): string
     {
         return $this->color;
     }
 
+    /**
+     * @param string $value
+     * @param string $color
+     *
+     * @return bool
+     */
     private function isCorrectCard(string $value, string $color): bool
     {
         return isset(self::VALUES[$value]) && isset(self::COLORS[$color]);

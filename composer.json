@@ -2,7 +2,9 @@
     "name": "dipsycat/pokerface",
     "description": "Poker",
     "type": "project",
-    "require": {},
+    "require": {
+        "friendsofphp/php-cs-fixer": "^2.15"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "src/"

@@ -69,7 +69,6 @@ class CardCalculateTest extends TestCase
 
     public function testCalculateFlush()
     {
-
         $cards = [
             new Card('10h', false),
             new Card('9h', false),
@@ -89,7 +88,6 @@ class CardCalculateTest extends TestCase
 
     public function testCalculateFlush1()
     {
-
         $cards = [
             new Card('9s', false),
             new Card('10s', false),
@@ -109,7 +107,6 @@ class CardCalculateTest extends TestCase
 
     public function testCalculateFullHouse()
     {
-
         $cards = [
             new Card('10h', false),
             new Card('10d', false),
