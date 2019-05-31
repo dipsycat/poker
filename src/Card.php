@@ -47,7 +47,8 @@ class Card
     /**
      * Card constructor.
      *
-     * @param $text
+     * @param string $text
+     * @param bool   $isPlayerCard
      *
      * @throws NotCorrectCardException
      */

@@ -3,25 +3,19 @@
 namespace App;
 
 use App\Service\CardCalculate;
+use App\Service\ParseArgs;
 
 class Kernel
 {
     public function start($board, $players)
     {
-        $matches = [];
-        preg_match_all("/([2-9]|10|[JQKA])[dsch]+/", $board, $matches);
-        $boardCards = [];
-        foreach($matches[0] as $match) {
-            $boardCards[] = new Card($match, false);
-        }
         $result = [];
-
+        $boardCards = ParseArgs::parseBoard($board);
         $calculate = new CardCalculate();
         /** @var Player $player */
         foreach ($players as $player) {
             $cards = $boardCards;
             array_push($cards, $player->getCard1(), $player->getCard2());
-
             $cardPrint = $calculate->calculate($cards);
             $result[$cardPrint->getWeight()] = $player->getName() . ' ' . $cardPrint->getTextWeight() . ' ' . $cardPrint->getOutput();
         }
