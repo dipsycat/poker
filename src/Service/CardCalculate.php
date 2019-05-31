@@ -98,24 +98,31 @@ class CardCalculate
 
             /** @var Card $obj */
             foreach($objs[$i] as $obj) {
-                $arr[] = $obj->getValue() . $obj->getColor();
+                //$arr[] = $obj->getValue() . $obj->getColor();
+                $arr[] = $obj;
                 if($obj->isPlayerCard()) {
 
                     $userCards[] = $obj;
                 }
             }
         }
+        usort($arr, ['App\Service\CardCalculate', 'sortCardsAsc']);
+        $arrText = [];
+        /** @var Card $ob */
+        foreach($arr as $ob) {
+            $arrText[] = $ob->getValue() . $ob->getColor();
+        }
         if($userCards) {
-            usort($userCards, ['App\Service\CardCalculate', 'sortCards']);
+            usort($userCards, ['App\Service\CardCalculate', 'sortCardsDesc']);
             $userCardsText = [];
             /** @var Card $userCard */
             foreach($userCards as $userCard) {
                 $userCardsText[] = $userCard->getValue() . $userCard->getColor();
             }
 
-            return '[' . implode(' ', $arr) . '] [' . implode(' ', $userCardsText) . ']';
+            return '[' . implode(' ', $arrText) . '] [' . implode(' ', $userCardsText) . ']';
         } else {
-            return '[' . implode(' ', $arr) . ']';
+            return '[' . implode(' ', $arrText) . ']';
         }
     }
 
@@ -403,7 +410,7 @@ class CardCalculate
         return $highCards;
     }
 
-    public static function sortCards(Card $a, Card $b)
+    public static function sortCardsDesc(Card $a, Card $b)
     {
         if($a->getIntValue() == $b->getIntValue()) {
             if($a->getColor() == $b->getColor()) {
@@ -412,6 +419,17 @@ class CardCalculate
             return ($a->getColor() < $b->getColor()) ? -1 : 1;
         }
         return ($a->getIntValue() < $b->getIntValue()) ? 1 : -1;
+    }
+
+    public static function sortCardsAsc(Card $a, Card $b)
+    {
+        if($a->getIntValue() == $b->getIntValue()) {
+            if($a->getColor() == $b->getColor()) {
+                return 0;
+            }
+            return ($a->getColor() < $b->getColor()) ? -1 : 1;
+        }
+        return ($a->getIntValue() < $b->getIntValue()) ? -1 : 1;
     }
 
 }
