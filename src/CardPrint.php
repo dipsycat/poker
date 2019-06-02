@@ -3,12 +3,10 @@
 
 namespace App;
 
-
 use App\Service\CardCalculate;
 
 class CardPrint
 {
-
     private $output;
     private $weight;
 
@@ -47,5 +45,4 @@ class CardPrint
     {
         return $this->textWeight . ' ' . $this->getOutput();
     }
-
 }

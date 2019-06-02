@@ -6,10 +6,8 @@ use App\Service\CardCalculate;
 
 class CardCalculateTest extends TestCase
 {
-
     public function testCalculateRoyalFlush()
     {
-
         $cards = [
             new Card('10h', false),
             new Card('7s', false),
@@ -29,7 +27,6 @@ class CardCalculateTest extends TestCase
 
     public function testCalculateStraightFlush()
     {
-
         $cards = [
             new Card('10h', false),
             new Card('9h', false),
@@ -49,7 +46,6 @@ class CardCalculateTest extends TestCase
 
     public function testCalculateFour()
     {
-
         $cards = [
             new Card('10h', false),
             new Card('10d', false),
@@ -141,7 +137,6 @@ class CardCalculateTest extends TestCase
         $calculate = new \App\Service\CardCalculate();
         $this->assertEquals($calculate->calculate($cards)->getWeight(), CardCalculate::$weight[CardCalculate::STRAIGHT]);
         $this->assertEquals($calculate->calculate($cards)->getOutput(), '[4h 5d 6c 7c 8c]');
-
     }
 
 
@@ -201,5 +196,4 @@ class CardCalculateTest extends TestCase
         $this->assertEquals($calculate->calculate($cards)->getWeight(), CardCalculate::$weight[CardCalculate::ONE_PAIR]);
         $this->assertEquals($calculate->calculate($cards)->getOutput(), '[4h 5c 7h 7c 8c]');
     }
-
 }

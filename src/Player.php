@@ -3,7 +3,6 @@
 
 namespace App;
 
-
 class Player
 {
     private $card1;
@@ -40,7 +39,4 @@ class Player
     {
         return $this->name;
     }
-
-
-
 }

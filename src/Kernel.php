@@ -20,8 +20,8 @@ class Kernel
             $result[$cardPrint->getWeight()] = $player->getName() . ' ' . $cardPrint->getTextWeight() . ' ' . $cardPrint->getOutput();
         }
 
-        for($i = 10; $i >= 1; $i--) {
-            if(isset($result[$i])) {
+        for ($i = 10; $i >= 1; $i--) {
+            if (isset($result[$i])) {
                 echo $result[$i] . "\n";
             }
         }

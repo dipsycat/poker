@@ -58,7 +58,7 @@ class Card
         $color = mb_substr($text, -1, 1);
         $this->isPlayerCard = $isPlayerCard;
 
-        if($this->isCorrectCard($value, $color)) {
+        if ($this->isCorrectCard($value, $color)) {
             $this->value = $value;
             $this->color = $color;
         } else {
@@ -108,6 +108,4 @@ class Card
     {
         return isset(self::VALUES[$value]) && isset(self::COLORS[$color]);
     }
-
-
 }
