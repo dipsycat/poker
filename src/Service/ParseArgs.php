@@ -21,7 +21,7 @@ class ParseArgs
         $players = [];
         foreach ($args as $arg) {
             $matches = [];
-            if (preg_match("/^--p\d+=\w{4}$/", $arg, $matches)) {
+            if (preg_match("/^--p\d+=\w+$/", $arg, $matches)) {
                 $params = explode("=", $matches[0]);
                 $playerName = mb_substr($params[0], 2);
                 $card1 = mb_substr($params[1], 0, 2);
@@ -43,8 +43,13 @@ class ParseArgs
         $matches = [];
         preg_match_all("/([2-9]|10|[JQKA])[dsch]+/", $board, $matches);
         $boardCards = [];
+        $length = 0;
         foreach ($matches[0] as $match) {
+            $length += mb_strlen($match);
             $boardCards[] = new Card($match, false);
+        }
+        if($length != mb_strlen($board)) {
+            throw new NotCorrectCardException();
         }
         return $boardCards;
     }
