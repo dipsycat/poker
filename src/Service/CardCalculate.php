@@ -18,6 +18,10 @@ class CardCalculate
     const ONE_PAIR = 'One pair';
     const HIGH_CARD = 'High card';
 
+    const MAX_CARD_VALUE = 14;
+    const MIN_CARD_VALUE = 2;
+    const COUNT_COMBINATION_CARDS = 5;
+
     /**
      * @var array
      */
@@ -112,7 +116,6 @@ class CardCalculate
 
             /** @var Card $obj */
             foreach ($objs[$i] as $obj) {
-                //$arr[] = $obj->getValue() . $obj->getColor();
                 $arr[] = $obj;
                 if ($obj->isPlayerCard()) {
                     $userCards[] = $obj;
@@ -149,13 +152,13 @@ class CardCalculate
         $count = 0;
         $highCards = [];
         foreach ($colorObj as $color) {
-            if (count($color) >= 5) {
-                for ($i = 14; $i >= 10; $i--) {
+            if (count($color) >= self::COUNT_COMBINATION_CARDS) {
+                for ($i = self::MAX_CARD_VALUE; $i >= 10; $i--) {
                     if (isset($color[$i])) {
                         $isSequence = true;
                         $count++;
                         $highCards[$i] = [$color[$i]];
-                        if ($count == 5) {
+                        if ($count == self::COUNT_COMBINATION_CARDS) {
                             break;
                         }
                     } elseif ($isSequence) {
@@ -166,7 +169,8 @@ class CardCalculate
                 }
             }
         }
-        return ($isSequence && $count == 5) ? $highCards : [];
+
+        return ($isSequence && $count == self::COUNT_COMBINATION_CARDS) ? $highCards : [];
     }
 
     /**
@@ -179,13 +183,13 @@ class CardCalculate
         $count = 0;
         $highCards = [];
         foreach ($colorObj as $color) {
-            if (count($color) >= 5) {
-                for ($i = 14; $i >= 2; $i--) {
+            if (count($color) >= self::COUNT_COMBINATION_CARDS) {
+                for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
                     if (isset($color[$i])) {
                         $isSequence = true;
                         $count++;
                         $highCards[$i] = [$color[$i]];
-                        if ($count == 5) {
+                        if ($count == self::COUNT_COMBINATION_CARDS) {
                             break;
                         }
                     } elseif ($isSequence) {
@@ -196,7 +200,8 @@ class CardCalculate
                 }
             }
         }
-        return ($isSequence && $count == 5) ? $highCards : [];
+
+        return ($isSequence && $count == self::COUNT_COMBINATION_CARDS) ? $highCards : [];
     }
 
     /**
@@ -207,7 +212,7 @@ class CardCalculate
     {
         $highCards = [];
         $count = 0;
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 if (count($pairsObj[$i]) == 3) {
                     $highCards[$i] = $pairsObj[$i];
@@ -219,13 +224,14 @@ class CardCalculate
                     $count += 2;
                 }
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
-        if ($count != 5) {
+        if ($count != self::COUNT_COMBINATION_CARDS) {
             return [];
         }
+
         return $highCards;
     }
 
@@ -237,19 +243,20 @@ class CardCalculate
     {
         $res = [];
         foreach ($colorObjs as $colorObj) {
-            if (count($colorObj) >= 5) {
-                for ($i = 14; $i >= 2; $i--) {
+            if (count($colorObj) >= self::COUNT_COMBINATION_CARDS) {
+                for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
                     if (!isset($colorObj[$i])) {
                         continue;
                     }
                     $res[$i] = [$colorObj[$i]];
-                    if (count($res) == 5) {
+                    if (count($res) == self::COUNT_COMBINATION_CARDS) {
                         break;
                     }
                 }
                 break;
             }
         }
+
         return $res;
     }
 
@@ -262,12 +269,12 @@ class CardCalculate
         $isSequence = false;
         $count = 0;
         $highCards = [];
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 $isSequence = true;
                 $count++;
                 $highCards[$i] = [$pairsObj[$i][0]];
-                if ($count == 5) {
+                if ($count == self::COUNT_COMBINATION_CARDS) {
                     break;
                 }
             } elseif ($isSequence) {
@@ -276,7 +283,8 @@ class CardCalculate
                 $highCards = [];
             }
         }
-        return ($isSequence && $count == 5) ? $highCards : [];
+
+        return ($isSequence && $count == self::COUNT_COMBINATION_CARDS) ? $highCards : [];
     }
 
     /**
@@ -288,7 +296,7 @@ class CardCalculate
         $highCards = [];
         $count = 0;
         $isFour = false;
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 if (count($pairsObj[$i]) == 4) {
                     $highCards[$i] = $pairsObj[$i];
@@ -298,7 +306,7 @@ class CardCalculate
                     break;
                 }
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
@@ -306,15 +314,16 @@ class CardCalculate
             return [];
         }
 
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 $highCards[$i] = $pairsObj[$i];
                 $count++;
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
+
         return $highCards;
     }
 
@@ -328,7 +337,7 @@ class CardCalculate
         $count = 0;
         $isThird = false;
 
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 if (count($pairsObj[$i]) == 3) {
                     $highCards[$i] = $pairsObj[$i];
@@ -338,22 +347,23 @@ class CardCalculate
                     break;
                 }
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
         if (!$isThird) {
             return [];
         }
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 $highCards[$i] = $pairsObj[$i];
                 $count++;
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
+
         return $highCards;
     }
 
@@ -366,7 +376,7 @@ class CardCalculate
         $highCards = [];
         $count = 0;
         $isPair = false;
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 if (count($pairsObj[$i]) == 2) {
                     $highCards[$i] = $pairsObj[$i];
@@ -376,23 +386,22 @@ class CardCalculate
                     break;
                 }
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
         if (!$isPair) {
             return [];
         }
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 $highCards[$i] = $pairsObj[$i];
                 $count++;
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
-
 
         return $highCards;
     }
@@ -404,11 +413,11 @@ class CardCalculate
     public function isHighCard(array $pairsObj): array
     {
         $highCards = [];
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 $highCards[$i] = $pairsObj[$i];
             }
-            if (count($highCards) == 5) {
+            if (count($highCards) == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
@@ -425,7 +434,7 @@ class CardCalculate
         $highCards = [];
         $count = 0;
         $isTwoPair = false;
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 if (count($pairsObj[$i]) == 2) {
                     $highCards[$i] = $pairsObj[$i];
@@ -442,15 +451,16 @@ class CardCalculate
             return [];
         }
 
-        for ($i = 14; $i >= 2; $i--) {
+        for ($i = self::MAX_CARD_VALUE; $i >= self::MIN_CARD_VALUE; $i--) {
             if (isset($pairsObj[$i])) {
                 $highCards[$i] = $pairsObj[$i];
                 $count++;
             }
-            if ($count == 5) {
+            if ($count == self::COUNT_COMBINATION_CARDS) {
                 break;
             }
         }
+
         return $highCards;
     }
 
@@ -467,6 +477,7 @@ class CardCalculate
             }
             return ($a->getColor() < $b->getColor()) ? -1 : 1;
         }
+
         return ($a->getIntValue() < $b->getIntValue()) ? 1 : -1;
     }
 
@@ -483,6 +494,7 @@ class CardCalculate
             }
             return ($a->getColor() < $b->getColor()) ? -1 : 1;
         }
+
         return ($a->getIntValue() < $b->getIntValue()) ? -1 : 1;
     }
 }
