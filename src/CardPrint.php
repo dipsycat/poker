@@ -7,10 +7,28 @@ use App\Service\CardCalculate;
 
 class CardPrint
 {
+    /**
+     * @var string
+     */
     private $output;
+
+    /**
+     * @var int
+     */
     private $weight;
 
-    public function __construct($output, $weight, $textWeight)
+    /**
+     * @var string
+     */
+    private $textWeight;
+
+    /**
+     * CardPrint constructor.
+     * @param string $output
+     * @param int $weight
+     * @param string $textWeight
+     */
+    public function __construct(string $output, int $weight, string $textWeight)
     {
         $this->output = $output;
         $this->weight = $weight;
@@ -18,7 +36,7 @@ class CardPrint
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getOutput()
     {
@@ -26,7 +44,7 @@ class CardPrint
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getWeight()
     {
@@ -34,13 +52,16 @@ class CardPrint
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTextWeight()
     {
         return $this->textWeight;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->textWeight . ' ' . $this->getOutput();

@@ -7,7 +7,12 @@ use App\Service\ParseArgs;
 
 class Kernel
 {
-    public function start($board, $players)
+    /**
+     * @param string $board
+     * @param array $players
+     * @throws Exception\NotCorrectCardException
+     */
+    public function start(string $board, array $players): void
     {
         $result = [];
         $boardCards = ParseArgs::parseBoard($board);

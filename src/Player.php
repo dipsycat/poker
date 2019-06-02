@@ -5,10 +5,27 @@ namespace App;
 
 class Player
 {
+    /**
+     * @var Card
+     */
     private $card1;
+
+    /**
+     * @var Card
+     */
     private $card2;
+
+    /**
+     * @var string
+     */
     private $name;
 
+    /**
+     * Player constructor.
+     * @param string $name
+     * @param Card $card1
+     * @param Card $card2
+     */
     public function __construct(string $name, Card $card1, Card $card2)
     {
         $this->card1 = $card1;

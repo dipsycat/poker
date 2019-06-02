@@ -8,11 +8,14 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'e8aa6e4b5a1db2f56ae794f1505391a8' => __DIR__ . '/..' . '/amphp/amp/lib/functions.php',
+        '76cd0796156622033397994f25b0d8fc' => __DIR__ . '/..' . '/amphp/amp/lib/Internal/functions.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '6cd5651c4fef5ed6b63e8d8b8ffbf3cc' => __DIR__ . '/..' . '/amphp/byte-stream/lib/functions.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -22,6 +25,8 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
         ),
         'W' => 
         array (
+            'Webmozart\\PathUtil\\' => 19,
+            'Webmozart\\Glob\\' => 15,
             'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
@@ -44,7 +49,15 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psalm\\Plugin\\' => 13,
+            'Psalm\\' => 6,
+            'PhpParser\\' => 10,
             'PhpCsFixer\\' => 11,
+            'PackageVersions\\' => 16,
+        ),
+        'L' => 
+        array (
+            'LanguageServerProtocol\\' => 23,
         ),
         'D' => 
         array (
@@ -60,6 +73,9 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
         'A' => 
         array (
             'App\\' => 4,
+            'Amp\\ByteStream\\' => 15,
+            'Amp\\' => 4,
+            'AdvancedJsonRpc\\' => 16,
         ),
     );
 
@@ -69,6 +85,14 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'Webmozart\\PathUtil\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webmozart/path-util/src',
+        ),
+        'Webmozart\\Glob\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webmozart/glob/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -134,9 +158,29 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Psalm\\Plugin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vimeo/psalm/src/Psalm/Plugin',
+        ),
+        'Psalm\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vimeo/psalm/src/Psalm',
+        ),
+        'PhpParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
         'PhpCsFixer\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofphp/php-cs-fixer/src',
+        ),
+        'PackageVersions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
+        ),
+        'LanguageServerProtocol\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/felixfbecker/language-server-protocol/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -162,6 +206,18 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'Amp\\ByteStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/amphp/byte-stream/lib',
+        ),
+        'Amp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/amphp/amp/lib',
+        ),
+        'AdvancedJsonRpc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/felixfbecker/advanced-json-rpc/lib',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -170,6 +226,20 @@ class ComposerStaticInit3b176ff174570e7d64abf8263894ffd2
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'L' => 
+        array (
+            'LSS' => 
+            array (
+                0 => __DIR__ . '/..' . '/openlss/lib-array2xml',
+            ),
+        ),
+        'J' => 
+        array (
+            'JsonMapper' => 
+            array (
+                0 => __DIR__ . '/..' . '/netresearch/jsonmapper/src',
             ),
         ),
         'D' => 

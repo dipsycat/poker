@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'LSS' => array($vendorDir . '/openlss/lib-array2xml'),
+    'JsonMapper' => array($vendorDir . '/netresearch/jsonmapper/src'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
 );

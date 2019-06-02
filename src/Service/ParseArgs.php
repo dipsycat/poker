@@ -11,7 +11,12 @@ class ParseArgs
     const BOARD_PARAM = 'board:';
     const BOARD_KEY = 'board';
 
-    public static function parsePlayers($args)
+    /**
+     * @param array $args
+     * @return array
+     * @throws NotCorrectCardException
+     */
+    public static function parsePlayers(array $args): array
     {
         $players = [];
         foreach ($args as $arg) {

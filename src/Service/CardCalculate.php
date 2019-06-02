@@ -18,6 +18,9 @@ class CardCalculate
     const ONE_PAIR = 'One pair';
     const HIGH_CARD = 'High card';
 
+    /**
+     * @var array
+     */
     public static $weight = [
         self::HIGH_CARD => 1,
         self::ONE_PAIR => 2,
@@ -31,7 +34,11 @@ class CardCalculate
         self::ROYAL_FLUSH => 10
     ];
 
-    public function calculate($cards)
+    /**
+     * @param Card[] $cards
+     * @return CardPrint
+     */
+    public function calculate(array $cards): CardPrint
     {
         $pairs = [];
         $flush = [];
@@ -75,17 +82,26 @@ class CardCalculate
             return new CardPrint($this->printCards($objs), $this->getWeightByName(self::TWO_PAIR), self::TWO_PAIR);
         } elseif ($objs = $this->isPair($pairsObj)) {
             return new CardPrint($this->printCards($objs), $this->getWeightByName(self::ONE_PAIR), self::ONE_PAIR);
-        } elseif ($objs = $this->isHighCard($pairsObj)) {
+        } else {
+            $objs = $this->isHighCard($pairsObj);
             return new CardPrint($this->printCards($objs), $this->getWeightByName(self::HIGH_CARD), self::HIGH_CARD);
         }
     }
 
-    public function getWeightByName($name)
+    /**
+     * @param string $name
+     * @return int
+     */
+    public function getWeightByName(string $name): int
     {
         return static::$weight[$name];
     }
 
-    public function printCards($objs)
+    /**
+     * @param array $objs
+     * @return string
+     */
+    public function printCards(array $objs): string
     {
         $arr = [];
         $userCards = [];
@@ -123,7 +139,11 @@ class CardCalculate
         }
     }
 
-    public function isRoyalFlush($colorObj)
+    /**
+     * @param array $colorObj
+     * @return array
+     */
+    public function isRoyalFlush(array $colorObj): array
     {
         $isSequence = false;
         $count = 0;
@@ -146,10 +166,14 @@ class CardCalculate
                 }
             }
         }
-        return ($isSequence && $count == 5) ? $highCards : 0;
+        return ($isSequence && $count == 5) ? $highCards : [];
     }
 
-    public function isStraightFlush($colorObj)
+    /**
+     * @param array $colorObj
+     * @return array
+     */
+    public function isStraightFlush(array $colorObj): array
     {
         $isSequence = false;
         $count = 0;
@@ -172,10 +196,14 @@ class CardCalculate
                 }
             }
         }
-        return ($isSequence && $count == 5) ? $highCards : 0;
+        return ($isSequence && $count == 5) ? $highCards : [];
     }
 
-    public function isFullHouse($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isFullHouse(array $pairsObj): array
     {
         $highCards = [];
         $count = 0;
@@ -196,12 +224,16 @@ class CardCalculate
             }
         }
         if ($count != 5) {
-            return 0;
+            return [];
         }
         return $highCards;
     }
 
-    public function isFlush($colorObjs)
+    /**
+     * @param array $colorObjs
+     * @return array
+     */
+    public function isFlush(array $colorObjs): array
     {
         $res = [];
         foreach ($colorObjs as $colorObj) {
@@ -221,7 +253,11 @@ class CardCalculate
         return $res;
     }
 
-    public function isStraight($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isStraight(array $pairsObj): array
     {
         $isSequence = false;
         $count = 0;
@@ -240,10 +276,14 @@ class CardCalculate
                 $highCards = [];
             }
         }
-        return ($isSequence && $count == 5) ? $highCards : 0;
+        return ($isSequence && $count == 5) ? $highCards : [];
     }
 
-    public function isFour($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isFour(array $pairsObj): array
     {
         $highCards = [];
         $count = 0;
@@ -263,7 +303,7 @@ class CardCalculate
             }
         }
         if (!$isFour) {
-            return 0;
+            return [];
         }
 
         for ($i = 14; $i >= 2; $i--) {
@@ -278,7 +318,11 @@ class CardCalculate
         return $highCards;
     }
 
-    public function isThird($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isThird(array $pairsObj): array
     {
         $highCards = [];
         $count = 0;
@@ -299,7 +343,7 @@ class CardCalculate
             }
         }
         if (!$isThird) {
-            return 0;
+            return [];
         }
         for ($i = 14; $i >= 2; $i--) {
             if (isset($pairsObj[$i])) {
@@ -313,7 +357,11 @@ class CardCalculate
         return $highCards;
     }
 
-    public function isPair($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isPair(array $pairsObj): array
     {
         $highCards = [];
         $count = 0;
@@ -333,7 +381,7 @@ class CardCalculate
             }
         }
         if (!$isPair) {
-            return 0;
+            return [];
         }
         for ($i = 14; $i >= 2; $i--) {
             if (isset($pairsObj[$i])) {
@@ -349,7 +397,11 @@ class CardCalculate
         return $highCards;
     }
 
-    public function isHighCard($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isHighCard(array $pairsObj): array
     {
         $highCards = [];
         for ($i = 14; $i >= 2; $i--) {
@@ -364,7 +416,11 @@ class CardCalculate
         return $highCards;
     }
 
-    public function isTwoPair($pairsObj)
+    /**
+     * @param array $pairsObj
+     * @return array
+     */
+    public function isTwoPair(array $pairsObj): array
     {
         $highCards = [];
         $count = 0;
@@ -383,7 +439,7 @@ class CardCalculate
             }
         }
         if (!$isTwoPair) {
-            return 0;
+            return [];
         }
 
         for ($i = 14; $i >= 2; $i--) {
@@ -398,7 +454,12 @@ class CardCalculate
         return $highCards;
     }
 
-    public static function sortCardsDesc(Card $a, Card $b)
+    /**
+     * @param Card $a
+     * @param Card $b
+     * @return int
+     */
+    protected static function sortCardsDesc(Card $a, Card $b): int
     {
         if ($a->getIntValue() == $b->getIntValue()) {
             if ($a->getColor() == $b->getColor()) {
@@ -409,7 +470,12 @@ class CardCalculate
         return ($a->getIntValue() < $b->getIntValue()) ? 1 : -1;
     }
 
-    public static function sortCardsAsc(Card $a, Card $b)
+    /**
+     * @param Card $a
+     * @param Card $b
+     * @return int
+     */
+    protected static function sortCardsAsc(Card $a, Card $b): int
     {
         if ($a->getIntValue() == $b->getIntValue()) {
             if ($a->getColor() == $b->getColor()) {
